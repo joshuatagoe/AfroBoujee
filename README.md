@@ -2,25 +2,25 @@ The content below is an example project proposal / requirements document. Replac
 
 (___TODO__: your project name_)
 
-# Shoppy Shoperson 
+MaliExpress
+
 
 ## Overview
 
 (___TODO__: a brief one or two paragraph, high-level description of your project_)
 
-Remembering what to buy at the grocery store is waaaaay too difficult. Also, shopping for groceries when you're hungry leads to regrettable purchases. Sooo... that's where Shoppy Shoperson comes in!
-
-Shoppy Shoperson is a web app that will allow users to keep track of multiple grocery lists. Users can register and login. Once they're logged in, they can create or view their grocery list. For every list that they have, they can add items to the list or cross off items.
+Creating a website that allows individuals to create their own online stores, and sell their own products.
+All products can be found within a centralized market place that allows the user to search for the desired product he/she is looking for. Products are filtered based on what type of product it is,and what country it is being sold from.
 
 
 ## Data Model
 
 (___TODO__: a description of your application's data and their relationships to each other_) 
 
-The application will store Users, Lists and Items
+The application will store Users, the stores they've created, and the products within those stores.
+The stores will store the country they are made in.
+The product objects will store the tags associated with them to allow for easy filtering.
 
-* users can have multiple lists (via references)
-* each list can have multiple items (by embedding)
 
 (___TODO__: sample documents_)
 
@@ -28,23 +28,23 @@ An Example User:
 
 ```javascript
 {
-  username: "shannonshopper",
+  username: "mansumusa",
   hash: // a password hash,
-  lists: // an array of references to List documents
+  stores: // an array of Stores
 }
 ```
 
-An Example List with Embedded Items:
+An Example Store item:
 
 ```javascript
 {
   user: // a reference to a User object
-  name: "Breakfast foods",
+  name: "The Jewelry Jackpot",
   items: [
-    { name: "pancakes", quantity: "9876", checked: false},
-    { name: "ramen", quantity: "2", checked: true},
+    { name: "Gold necklace", quantity: "9876", price: "$300", type: [ "Jewelry", "Gold", "Finished Product"]},
+    { name: "Gold cup ", quantity: "2", type: ["Utensil", "Craftwork", "Gold"]},
   ],
-  createdAt: // timestamp
+  Location: "Mali"
 }
 ```
 
