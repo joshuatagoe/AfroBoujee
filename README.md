@@ -102,7 +102,7 @@ An Example Store:
 
 ## [Link to Initial Main Project File](app.js) 
 
-(___TODO__: ![list](src/app.js)
+[list](src/app.js)
 
 ## Annotations / References Used
 
