@@ -34,7 +34,7 @@ An Example User:
 }
 ```
 
-An Example Store item:
+An Example Store:
 
 ```javascript
 {
@@ -57,23 +57,23 @@ An Example Store item:
 
 (___TODO__: wireframes for all of the pages on your site; they can be as simple as photos of drawings or you can use a tool like Balsamiq, Omnigraffle, etc._)
 
-/list/create - page for creating a new shopping list
+/homepage - homepage of website
 
-![list create](documentation/list-create.png)
+(documentation/homepage.jpg)
 
-/list - page for showing all shopping lists
+/products - page for showing all products
 
-![list](documentation/list.png)
+(documentation/product-lists.jpg)
 
-/list/slug - page for showing specific shopping list
+/store - page for showing a user's store
 
-![list](documentation/list-slug.png)
+(documentation/store_page.jpg)
 
 ## Site map
 
 (___TODO__: draw out a site map that shows how pages are related to each other_)
 
-Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia/commons/2/20/Sitemap_google.jpg), but you can create one without the screenshots, drop shadows, etc. ... just names of pages and where they flow to.
+(documentation/Sitemap.jpg)
 
 ## User Stories or Use Cases
 
@@ -81,32 +81,28 @@ Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia
 
 1. as non-registered user, I can register a new account with the site
 2. as a user, I can log in to the site
-3. as a user, I can create a new grocery list
-4. as a user, I can view all of the grocery lists I've created in a single list
-5. as a user, I can add items to an existing grocery list
-6. as a user, I can cross off items in an existing grocery list
+3. as a user, I can create my own store
+4. as a user, I can create product listings that I can sell ony my own store
+5. as a user, the products I create on my store will be findable on the centralized marketplace
+6. as a user, I can make transactions throughout my website
+7. as a user, I can categorized my product listings anyway I like, and I can arrange how my store looks like under a template
+
 
 ## Research Topics
 
 (___TODO__: the research topics that you're planning on working on along with their point values... and the total points of research topics listed_)
 
-* (5 points) Integrate user authentication
-    * I'm going to be using passport for user authentication
-    * And account has been made for testing; I'll email you the password
-    * see <code>cs.nyu.edu/~jversoza/ait-final/register</code> for register page
-    * see <code>cs.nyu.edu/~jversoza/ait-final/login</code> for login page
-* (4 points) Perform client side form validation using a JavaScript library
-    * see <code>cs.nyu.edu/~jversoza/ait-final/my-form</code>
-    * if you put in a number that's greater than 5, an error message will appear in the dom
-* (5 points) vue.js
-    * used vue.js as the frontend framework; it's a challenging library to learn, so I've assigned it 5 points
+* (3 points) Add user templating
+    * Allow user to create own page on website, and edit variables on chosen template to create their own page with their own product listings
+* (3 points) Card transactions
+    * Research some apis that allow users to make transactions either through paypal/venmo or a credit/debit card
 
-10 points total out of 8 required points (___TODO__: addtional points will __not__ count for extra credit_)
+6 points total out of 8 required points (___TODO__: addtional points will __not__ count for extra credit_)
 
 
 ## [Link to Initial Main Project File](app.js) 
 
-(___TODO__: create a skeleton Express application with a package.json, app.js, views folder, etc. ... and link to your initial app.js_)
+(___TODO__: (src/app.js)
 
 ## Annotations / References Used
 
