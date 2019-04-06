@@ -59,15 +59,15 @@ An Example Store:
 
 /homepage - homepage of website
 
-(documentation/homepage.jpg)
+![list](documentation/homepage.jpg)
 
 /products - page for showing all products
 
-(documentation/product-lists.jpg)
+![list](documentation/product-lists.jpg)
 
 /store - page for showing a user's store
 
-(documentation/store_page.jpg)
+![list](documentation/store_page.jpg)
 
 ## Site map
 
@@ -102,7 +102,7 @@ An Example Store:
 
 ## [Link to Initial Main Project File](app.js) 
 
-(___TODO__: (src/app.js)
+(___TODO__: ![list](src/app.js)
 
 ## Annotations / References Used
 
