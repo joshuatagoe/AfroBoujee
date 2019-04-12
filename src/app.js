@@ -6,3 +6,10 @@ const path = require("path");
 app.use(express.static(path.join(__dirname, '/public')));
 app.set('view engine', 'hbs');
 app.use(express.urlencoded({ extended: false }));
+
+
+
+
+
+
+app.listen(process.env.PORT || 3000);
