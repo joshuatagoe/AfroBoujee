@@ -23,8 +23,5 @@ const mongoose = require('mongoose') ;
 URLSlugs = require('mongoose-url-slugs');
 //mongoose.connect('mongodb://localhost/hw05');
 
-const Store = mongoose.model('Store', reviewschema);
-const User = mongoose.model('User', userSchema);
 //bookschema.plugin(URLSlugs('title author'));
-const Product = mongoose.model('Product', productSchema );
 mongoose.connect(dbconf);

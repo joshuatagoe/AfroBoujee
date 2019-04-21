@@ -1,13 +1,14 @@
 const mongoose = require('mongoose') ;
+var Store = require('./store.js');
 
 const userSchema = new mongoose.Schema({
     title : String,
-    stores: [storeSchema],
+    stores: [Store.schema],
     rating: Number, //rating of the user and his products
-    reviews : [reviewschema],
+    reviews : [String],
     password: String,
     username: String
 
 })
 
-const User = mongoose.model('User', userSchema);
+module.exports = mongoose.model('User', userSchema);

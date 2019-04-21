@@ -18,6 +18,8 @@
   "homepage": "https://github.com/nyu-csci-ua-0480-008-spring-2019/JUCHY-final-project#readme",
   "dependencies": {
     "express": "^4.16.4",
+    "fs": "0.0.1-security",
+    "hbs": "^4.0.4",
     "mongoose": "^5.4.22",
     "mongoose-url-slugs": "^1.0.2"
   }
