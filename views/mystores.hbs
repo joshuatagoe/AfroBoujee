@@ -1,0 +1,11 @@
+{{#each currUser.stores}}
+        <ul>
+            <li><a href="/mystores/{{storename}}/myproducts">{{storename}}</a></li>
+        <ul>
+{{/each}}
+
+
+<form method="POST" action="/mystores">
+    Add Store <input type="text" name="name" required>
+    <input type="submit">
+</form>

@@ -16,7 +16,7 @@ if (process.env.NODE_ENV === 'PRODUCTION') {
  dbconf = conf.dbconf;
 } else {
  // if we're not in PRODUCTION mode, then use
- dbconf = 'mongodb://Timbuktu';
+ dbconf = 'mongodb://localhost/final_project_db';
 }
 
 const mongoose = require('mongoose') ;
@@ -24,4 +24,7 @@ URLSlugs = require('mongoose-url-slugs');
 //mongoose.connect('mongodb://localhost/hw05');
 
 //bookschema.plugin(URLSlugs('title author'));
+console.log(dbconf);
+
+
 mongoose.connect(dbconf);

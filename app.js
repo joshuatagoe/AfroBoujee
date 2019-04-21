@@ -19,15 +19,50 @@ fs.readdirSync(models)
 const User = mongoose.model('User');
 const Product = mongoose.model('Product');
 const Store = mongoose.model('Store');
-
+const defaultusertest = "Musa Keita II"
+const defaulemailtest = "joshuatagoe99@gmail.com"
 
 app.get('/',function(req,res){
     res.render('register');
 });
 
-app.post('/', funciton(req,res)){
-    
-}
+app.post('/register', function(req,res){
+
+});
+
+app.get('/test',function(req,res){
+    User.find(function(err, currUser, count){
+        console.log(currUser);
+        res.render(User);
+    })
+})
+
+app.get('/mystores',function(req,res){
+    User.findOne({"username": defaultusertest}, function(err, currUser, count){
+        console.log(currUser);
+        console.log(currUser);
+        res.render('mystores', {
+
+            currUser : User
+
+      })
+  });
+})
+
+app.get('/mystores/:storename/myproducts',function(req,res){
+
+})
+
+app.post('/mystores',function(req,res){
+    User.findOneAndUpdate({"username" : "Musa Keita II"}, { $push: { stores : {storename : req.body.name }} }, function(){
+        res.redirect('/mystores');
+    })
+
+})
+
+app.post('/mystores/:id/myproducts',function(req,res){
+
+})
 
 
 

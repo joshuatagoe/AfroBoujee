@@ -1,0 +1,12 @@
+    {{#each Stores.products}}
+        <ul>
+            <li>Product Name: {{}}:</li>
+            <li>Product Price: {{}}</li>
+        <ul>
+    {{/each}}
+    
+    <form method="POST" action="/mystores/{{slug}}/myproducts">
+        Product Name: <input type="text" name="name" required>
+        Product Price: <input type="text" name="password" required>
+        <input type="submit">
+    </form>
