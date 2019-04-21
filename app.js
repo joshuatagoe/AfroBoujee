@@ -43,13 +43,18 @@ app.get('/mystores',function(req,res){
         console.log(currUser);
         res.render('mystores', {
 
-            currUser : User
+            currUser : currUser
 
       })
   });
 })
 
 app.get('/mystores/:storename/myproducts',function(req,res){
+    Store.findById(req.body.storeid, function(err, currStore, count){
+        res.render('products', {
+            currStore : currStore
+        })
+    })
 
 })
 
@@ -60,8 +65,12 @@ app.post('/mystores',function(req,res){
 
 })
 
-app.post('/mystores/:id/myproducts',function(req,res){
+app.post('/mystores/:storename/myproducts',function(req,res){
 
+    Store.findByIdAndUpdate(req.body.storeid, { $push: { products : {storename : req.body.name }} }, function(){
+        var url = '/mystores/'+req.body.storeid+'/myproducts';
+        res.redirect('/myproducts');
+    })
 })
 
 
