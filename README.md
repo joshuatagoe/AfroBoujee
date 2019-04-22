@@ -28,9 +28,13 @@ An Example User:
 
 ```javascript
 {
-  username: "mansumusa",
-  hash: // a password hash,
-  stores: // an array of Stores
+    title : String,
+    stores: //array of stores
+    rating:  //average user rating
+    reviews : //array of reviews,
+    password: String,
+    username: String,
+    email: String
 }
 ```
 
@@ -38,15 +42,42 @@ An Example Store:
 
 ```javascript
 {
-  user: // a reference to a User object
-  name: "The Jewelry Jackpot",
-  items: [
-    { name: "Gold necklace", quantity: "9876", price: "$300", type: [ "Jewelry", "Gold", "Finished Product"]},
-    { name: "Gold cup ", quantity: "2", type: ["Utensil", "Craftwork", "Gold"]},
-  ],
-  Location: "Mali"
+    storename: String,
+    items: //array of products
+    location: String,
+    rating: Number //rating of the store and its products
+    reviews: //array of reviews
+    tags: [String] //?possible? array of tags to identify store
 }
 ```
+
+An Example product:
+
+```javascript
+{
+
+    name : String,
+    quantity : Number,
+    price : Number,
+    pricecurrency : String, //dollars or euros and francs, used to determine conversion rates for different users*might not implement this*
+    tags: [String] //array of tags this product identifies us
+    location: String //taken from store's location
+}
+```
+
+An Example Review:
+```javascript
+  {
+    rating: Number, //1-10 rating
+    review: String, //String representation of what the review says
+    username: String, //name of the user making the review  
+
+    
+  }
+  //might separate reviews into UserReviews, StoreReviews, and ProductReviews, with  different attributes for each
+
+```
+
 
 
 ## [Link to Commented First Draft Schema](db.js) 
@@ -84,29 +115,30 @@ An Example Store:
 3. as a user, I can create my own store
 4. as a user, I can create product listings that I can sell ony my own store
 5. as a user, the products I create on my store will be findable on the centralized marketplace
-6. as a user, I can make transactions throughout my website
-7. as a user, I can categorized my product listings anyway I like, and I can arrange how my store looks like under a template
+6. as a user, I can categorized my product listings anyway I like, and I can arrange how my store looks like under a template
 
 
 ## Research Topics
 
 (___TODO__: the research topics that you're planning on working on along with their point values... and the total points of research topics listed_)
 
-* (3 points) Add user templating
+* (2 points) Add user templating
     * Allow user to create own page on website, and edit variables on chosen template to create their own page with their own product listings
-* (3 points) Card transactions
-    * Research some apis that allow users to make transactions either through paypal/venmo or a credit/debit card
+* (2 points) Implement bootstrap
+    * Implement bootstrap
+* (4 points) Impelement payment system
+    * Implement payment system using some API
 
-6 points total out of 8 required points (___TODO__: addtional points will __not__ count for extra credit_)
+8 points total out of 8 required points (___TODO__: addtional points will __not__ count for extra credit_)
 
 
 ## [Link to Initial Main Project File](app.js) 
 
-[Main project file, app.js](src/app.js)
+[Main project file, app.js](app.js)
 
 ## Annotations / References Used
 
 (___TODO__: list any tutorials/references/etc. that you've based your code off of_)
 
-1. [passport.js authentication docs](http://passportjs.org/docs) - (add link to source code that was based on this)
-2. [tutorial on vue.js](https://vuejs.org/v2/guide/) - (add link to source code that was based on this)
+1. [Sample code for adding mongoose model mongoose files from external folder](app.js#L14)
+Source: https://github.com/madhums/node-express-mongoose-demo/blob/master/server.js 
