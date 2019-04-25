@@ -26,6 +26,16 @@ app.get('/',function(req,res){
     res.render('register');
 });
 
+app.get('/market',function(req,res){
+    res.render('marketplace');
+});
+
+app.get('/check',function(req,res){
+    console.log("test");
+    res.render('checkout');
+});
+
+
 app.post('/register', function(req,res){
 
 });
