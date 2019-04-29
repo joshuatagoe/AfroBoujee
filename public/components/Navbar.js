@@ -39,7 +39,7 @@ class Navbar extends React.Component {
                     </ul>
                     </div>
                 <div>
-                <button class="openbtn nobg" onClick={this.cart}><img class="cart" src="\img\cart.png"/> </button>
+                <button class="openbtn nobg container" onClick={this.cart}><img class="cart" src="\img\cart.png"/><div>4</div> </button>
                 </div>
   <button class="openbtn nobg" onClick={this.handleClick}><p>Musa Keita    </p><img class="user" src="\img\userdefault.jpg"/></button> 
 </nav>

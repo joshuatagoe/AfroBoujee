@@ -122,12 +122,12 @@ An Example Review:
 
 (___TODO__: the research topics that you're planning on working on along with their point values... and the total points of research topics listed_)
 
-* (4 points) Add user templating
-    * Allow user to create own page on website, and edit variables on chosen template to create their own page with their own product listings
-* (2 points) Implement bootstrap(Perhaps use react to create this)
+* (3 points) Implement Picture Uploading
+    * Allow user to upload images for product pictures and store carousel backgrounds
+* (2 points) Implement bootstrap
     * Implement bootstrap
-* (4 points) Impelement payment system
-    * Implement payment system using some API
+* (4 points) Impelement React and Webpack
+    * Implement React with Express, and allow for autocreation for bundle.js with webpack
 * (4 points) Impelement mobile configuration with bootstrap
     * Implement mobile configuration with bootstrap
 

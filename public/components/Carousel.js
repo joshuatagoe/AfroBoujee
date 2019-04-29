@@ -1,53 +1,29 @@
 const React = require('react');
-class Sidebar extends React.Component{
+class Carousel extends React.Component{
     render(){
 
         return(
-            <div id="mySidebar" class="sidebar">
-                <a href="#" class="closebtn" onClick={this.handleClick}>Musa Keita   <img class="user" src="\img\userdefault.jpg"/></a>
-                <p>
-                <button><a href="/login">Login</a></button><button><a href="/register">Register</a></button>
-                </p>
-                <ul class="list-unstyled components">
-                    <li class="active">
-                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-                        <ul class="collapse list-unstyled" id="homeSubmenu">
-                            <li>
-                                <a href="#">Home 1</a>
-                            </li>
-                            <li>
-                                <a href="#">Home 2</a>
-                            </li>
-                            <li>
-                                <a href="#">Home 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">About</a>
-                    </li>
-                    <li>
-                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-                        <ul class="collapse list-unstyled" id="pageSubmenu">
-                            <li>
-                                <a href="#">Page 1</a>
-                            </li>
-                            <li>
-                                <a href="#">Page 2</a>
-                            </li>
-                            <li>
-                                <a href="#">Page 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">Portfolio</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>
-                </ul>
+            <div id="myCarousel " class="carousel-inner">
+                <div class="carousel-item active">
+                <img class="d-block w-100" src="\img\kora.jpg" alt="First slide"/>
                 </div>
+                <div class="carousel-item">
+                <img class="d-block w-100" src="\img\mbira.jpg" alt="Second slide"/>
+                </div>
+                <div class="carousel-item">
+                <img class="d-block w-100" src="\img\mankala.jpg" alt="Third slide"/>
+                </div>
+                <div>
+                <a class="carousel-control-prev"   href="#myCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next"  href="#myCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+            </div>
+            </div>
         );
         
     }
@@ -58,4 +34,4 @@ class Sidebar extends React.Component{
     }
 }
 
-module.exports = Sidebar;
+module.exports = Carousel;

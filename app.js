@@ -1,7 +1,11 @@
 const fs = require('fs');
 const express = require('express');
 const db = require('./db');
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
+const multer = require('multer');
 const mongoose = require('mongoose');
+const crypto = require('crypto');
 const app = express();
 const path = require("path");
 const join = require('path').join;
@@ -16,10 +20,24 @@ if(process.env.NODE_ENV === 'development') {
         publicPath:'/javascripts'
     }));
 }
+//https://alligator.io/nodejs/uploading-files-multer-express/
+const storage = multer.diskStorage({
+    destination: './public/img/products',
+    filename: function (req, file, callback) {
+        crypto.pseudoRandomBytes(16, function(err, raw) {
+            if (err) return callback(err);
+            callback(null, raw.toString('hex') + path.extname(file.originalname));
+          });      //..
+    }
+  });
+  var upload = multer({ storage : storage })
 
 app.use(express.static(path.join(__dirname, '/public')));
 app.set('view engine', 'hbs');
 app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(morgan('dev'));
 const models = join(__dirname, 'models');
 
 // configure webpack-dev-middlware with our original webpack config
@@ -49,6 +67,18 @@ app.get('/',function(req,res){
     res.render('homepage');
 });
 
+app.get('/product/:store_id/:productname',function(req,res){
+    Store.findById(req.params.store_id, function(err, currStore, count){
+        currStore.products.findOne({"name": req.params.productname}, function(err,currProduct, count){
+            res.render('product', {
+                Product : currProduct
+            })
+        })
+    })
+});
+
+
+
 app.get('/market',function(req,res){
     res.render('marketplace');
 });
@@ -65,6 +95,7 @@ app.post('/register', function(req,res){
         password :req.body.password, 
         email : req.body.email
     }).save(function(err, user, count){
+        res.redirect('/');
     })
 
 });
@@ -78,8 +109,6 @@ app.get('/test',function(req,res){
 
 app.get('/mystores',function(req,res){
     User.findOne({"username": defaultusertest}, function(err, currUser, count){
-        console.log(currUser);
-        console.log(currUser);
         res.render('mystores', {
 
             currUser : currUser
@@ -88,9 +117,9 @@ app.get('/mystores',function(req,res){
   });
 })
 
-app.get('/mystores/:storename/myproducts',function(req,res){
-    if(req.params.storename){
-        Store.findOne({ "storename" : req.params.storename}, function(err, currStore, count){
+app.get('/mystores/:slug/myproducts',function(req,res){
+    if(req.params.slug){
+        Store.findOne({ "slug" : req.params.slug}, function(err, currStore, count){
             res.render('products', {
                 currStore : currStore
             })
@@ -106,21 +135,42 @@ app.get('/mystores/:storename/myproducts',function(req,res){
 
 
 app.post('/mystores',function(req,res){
-    const newstore = new Store({
+    let tempslug = (req.body.username.toLowerCase())+"-"+(req.body.location.toLowerCase())+"-"+(req.body.name.toLowerCase())
+    console.log(tempslug);
+    new Store({
         storename: req.body.name, 
         location :req.body.location, 
+        slug: tempslug
+    }).save(function(err, store, count){
+        console.log(store);
+        console.log(err);
+        console.log(count);
+        User.findOneAndUpdate({"username" : defaultusertest, "email" : defaultemailtest, "password" : password}, { $push: { stores : store} }, function(err, currstore, count){
+            res.redirect('/mystores');
     })
-    User.findOneAndUpdate({"username" : defaultusertest, "email" : defaultemailtest, "password" : password}, { $push: { stores : newstore} }, function(){
-        res.redirect('/mystores');
-    })
+})
 
 })
 
-app.post('/mystores/:storename/myproducts',function(req,res){
-    Store.findByIdAndUpdate(req.body.storeid, { $push: { products : {storename : req.body.name }} }, function(){
-        var url = '/mystores/'+req.body.storeid+'/myproducts';
-        res.redirect('/mystores/'+req.params.storename+'/myproducts');
-    })
+app.post('/mystores/:slug/myproducts', upload.single('avatar'), function(req,res){
+    if(!req.file){
+        console.log("No file received");
+        return res.send({
+            success: false
+        });
+    }
+    else{
+        console.log("filed received");
+        return res.send({
+            success: true
+        });
+
+    }
+
+    //Store.findByIdAndUpdate(req.body.storeid, { $push: { products : {storename : req.body.name }} }, function(){
+        //var url = '/mystores/'+req.body.storeid+'/myproducts';
+       // res.redirect('/mystores/'+req.params.storename+'/myproducts');
+   // })
 })
 
 app.get('/loggedin', function(req,res){
@@ -137,6 +187,22 @@ app.get('/login', function(req,res){
 app.get('/register', function(req,res){
     res.render('register');    
 })
+
+app.get('/user/:username',function(req,res){
+    User.findOne({"username": req.params.username}, function(err, currUser, count){
+        let validated= false
+        if(password===currUser.password){
+            validated=true;
+        }
+        res.render('user', {
+
+            User : currUser,
+            validated : validated
+
+      })
+  });
+
+});
 
 app.use(function(req, res, next){
     res.status(404).render('error');

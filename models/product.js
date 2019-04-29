@@ -8,7 +8,8 @@ const productSchema = new mongoose.Schema({
     price : Number,
     pricecurrency : String, //dollars or euros and francs, used to determine conversion rates for different users
     properties : [String],
-    description: String
+    description: String,
+    imgsrc : String
 
 })
 

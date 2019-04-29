@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/nyu-csci-ua-0480-008-spring-2019/JUCHY-final-project#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "crypto": "^1.0.1",
     "express": "^4.16.4",
     "express-session": "^1.16.1",
     "fs": "0.0.1-security",
@@ -24,6 +26,8 @@
     "hbs": "^4.0.4",
     "mongoose": "^5.4.22",
     "mongoose-url-slugs": "^1.0.2",
+    "morgan": "^1.9.1",
+    "multer": "^1.4.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },

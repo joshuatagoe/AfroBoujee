@@ -1,0 +1,36 @@
+<div id="Sidebar"></div>
+<div class="container">
+  <div class="row">
+    <div class="column">
+      <div>{{User.title}}</div>
+      <form method="POST">
+          <div >Username: <input id="username"  type="text" value={{User.username}} readonly></div>
+          <div>Password: <input id="userpassword" type="password" value={{User.password}} readonly></div>
+          <div>Email: <input id="useremail" type="text" value={{User.email}} readonly></div>
+          {{#if validated}}
+            <button id="editbutton1" onclick="handleClick()" value="Edit"></button>
+            <input type="submit" onclick="" class="hidebutton" id="editbutton2" value="Save Edit">	
+            <button id="cancelbutton" onclick="handleClick()" class="hidebutton" value="Edit"></button>
+          {{/if}}
+          <script>
+            function handleClick(){
+              $('#editbutton2').toggleClass('hidebutton');
+              $('#editbutton1').toggleClass('hidebutton');
+              $('#cancelbutton').toggleClass('hidebutton');
+              $('#username').toggleAttribute("readonly");
+              $('#userpassword').toggleAttribute("readonly");
+              $('#usermail').toggleAttribute("readonly");
+            }
+          </script>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column">
+     <div>Rating : {{User.Rating}}</div> 
+   
+     
+      <div></div>
+    </div>
+  </div>
+</div>>

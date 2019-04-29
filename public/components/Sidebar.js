@@ -5,9 +5,6 @@ class Sidebar extends React.Component{
         return(
             <div id="mySidebar" class="sidebar">
                 <a href="#" class="closebtn" onClick={this.handleClick}>Musa Keita   <img class="user" src="\img\userdefault.jpg"/></a>
-                <p>
-                <button><a href="/login">Login</a></button><button><a href="/register">Register</a></button>
-                </p>
                 <ul class="list-unstyled components">
                     <li class="active">
                         <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
@@ -41,7 +38,7 @@ class Sidebar extends React.Component{
                         </ul>
                     </li>
                     <li>
-                        <a href="#">Portfolio</a>
+                        <a href="/user/Musa Keita II">Profile Page</a>
                     </li>
                     <li>
                         <a href="#">Contact</a>
