@@ -18,9 +18,22 @@
   "homepage": "https://github.com/nyu-csci-ua-0480-008-spring-2019/JUCHY-final-project#readme",
   "dependencies": {
     "express": "^4.16.4",
+    "express-session": "^1.16.1",
     "fs": "0.0.1-security",
+    "handlebars-react": "0.0.16",
     "hbs": "^4.0.4",
     "mongoose": "^5.4.22",
-    "mongoose-url-slugs": "^1.0.2"
+    "mongoose-url-slugs": "^1.0.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-middleware": "^3.6.2"
   }
 }

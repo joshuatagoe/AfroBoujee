@@ -2,10 +2,11 @@
 
 // is the environment variable, NODE_ENV, set to PRODUCTION? 
 let dbconf;
+const fs = require('fs');
+
 if (process.env.NODE_ENV === 'PRODUCTION') {
  // if we're in PRODUCTION mode, then read the configration from a file
  // use blocking file io to do this...
- const fs = require('fs');
  const path = require('path');
  const fn = path.join(__dirname, 'config.json');
  const data = fs.readFileSync(fn);
@@ -19,12 +20,10 @@ if (process.env.NODE_ENV === 'PRODUCTION') {
  dbconf = 'mongodb://localhost/final_project_db';
 }
 
+
+
 const mongoose = require('mongoose') ;
 URLSlugs = require('mongoose-url-slugs');
-//mongoose.connect('mongodb://localhost/hw05');
-
-//bookschema.plugin(URLSlugs('title author'));
 console.log(dbconf);
-
 
 mongoose.connect(dbconf);

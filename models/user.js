@@ -1,6 +1,7 @@
 const mongoose = require('mongoose') ;
+URLSlugs = require('mongoose-url-slugs');
 var Store = require('./store.js');
-
+var Product = require('./product.js');
 const userSchema = new mongoose.Schema({
     title : String,
     stores: [Store.schema],
@@ -8,8 +9,11 @@ const userSchema = new mongoose.Schema({
     reviews : [String],
     password: String,
     username: String,
-    email: String
+    email: String,
+    cart: [Product.schema]
 
 })
+
+userSchema.plugin(URLSlugs("username"));
 
 module.exports = mongoose.model('User', userSchema);

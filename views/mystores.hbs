@@ -1,11 +1,15 @@
+<div id="Sidebar"></div>
+<ul>
+<div>{{currUser.username}}</div>
 {{#each currUser.stores}}
-        <ul>
-            <li><a href="/mystores/{{storename}}/myproducts">{{storename}}</a></li>
-        <ul>
+            <li><a href="/mystores/{{storename}}/myproducts">{{storename}}</a></li>   
 {{/each}}
+</ul>
 
 
 <form method="POST" action="/mystores">
     Add Store <input type="text" name="name" required>
-    <input type="submit">
+    <input type="hidden" value={{currUser._id}}/>
+    <input type="hidden" name="location" value="Mali">
+    <input type="submit"/>
 </form>

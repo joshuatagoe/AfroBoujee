@@ -1,13 +1,16 @@
-    {{#each Stores.products}}
-        <ul>
-            <li>Product Name: {{name}}:</li>
-            <li>Product Price: {{price}}</li>
-        <ul>
-    {{/each}}
-    
-    <form method="POST" action="/mystores/{{_id}}/myproducts">
-        Product Name: <input type="text" name="name" required>
-        Product Price: <input type="text" name="price" required>
-        <input type="hidden" name="storeid" value="{{_id}}">
-        <input type="submit">
-    </form>
+<div id="Sidebar"></div>       
+{{#each Stores.products}}
+    <ul>
+        <li>Product Name: {{name}}:</li>
+        <li>Product Price: {{price}}</li>
+    <ul>
+{{/each}}
+
+<form method="POST" action="/mystores/{{currStore.storename}}/myproducts" enctype="multipart/form-data">
+    Product Name: <input type="text" name="name" required>
+    Product Price: <input type="text" name="price" required>
+    Add Image: <input type="file" name="pic" accept="image/*" required>
+    Description: <input type="text" name="description" required>
+    <input type="hidden" name="storeid" value="{{_id}}">
+    <input type="submit">
+</form>
