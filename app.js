@@ -20,9 +20,16 @@ if(process.env.NODE_ENV === 'development') {
         publicPath:'/javascripts'
     }));
 }
+app.use(express.static(path.join(__dirname, '/public')));
+app.set('view engine', 'hbs');
+app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(morgan('dev'));
+const models = join(__dirname, 'models');
 //https://alligator.io/nodejs/uploading-files-multer-express/
 const storage = multer.diskStorage({
-    destination: 'public/img/products',
+    destination: '.\\public\\img\\products',
     filename: function (req, file, callback) {
         crypto.pseudoRandomBytes(16, function(err, raw) {
             if (err) return callback(err);
@@ -31,14 +38,6 @@ const storage = multer.diskStorage({
     }
   });
   var upload = multer({ storage : storage })
-
-app.use(express.static(path.join(__dirname, '/public')));
-app.set('view engine', 'hbs');
-app.use(express.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(morgan('dev'));
-const models = join(__dirname, 'models');
 
 // configure webpack-dev-middlware with our original webpack config
 // then... "use" webpack-dev-middleware
@@ -184,16 +183,13 @@ app.post('/mystores',function(req,res){
 app.post('/mystores/:slug/myproducts', upload.single('avatar'), function(req,res){
     if(!req.file){
         console.log("No file received");
-        return res.send({
-            success: false
-        });
+        alert("No filed Received, Failed");
+        res.redirect('/mystores/'+req.params.slug+"/myproducts");
     }
     else{
         console.log("filed received");
-        const host = req.host;
-        const filePath = req.file.path;
-        console.log(host);
-        console.log(filePath);
+        console.log(req.file.path);
+        const filePath = "/"+(req.file.path).slice(7);
         new Product({
             name: req.body.name, 
             price :req.body.price, 
