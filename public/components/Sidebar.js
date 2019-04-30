@@ -1,4 +1,6 @@
 const React = require('react');
+
+//part of code taken from https://bootstrapious.com/p/bootstrap-sidebar
 class Sidebar extends React.Component{
     render(){
 

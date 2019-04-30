@@ -1,4 +1,5 @@
 const React = require('react');
+//part of code taken from https://getbootstrap.com/docs/4.0/components/carousel/
 class Carousel extends React.Component{
     render(){
 

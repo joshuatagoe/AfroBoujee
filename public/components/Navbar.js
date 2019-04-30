@@ -1,4 +1,5 @@
 const React = require('react');
+//part of code taken from https://getbootstrap.com/docs/4.0/components/navbar/
 class Navbar extends React.Component {
 	render() {
 		return (
