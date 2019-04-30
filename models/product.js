@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-URLSlugs = require('mongoose-url-slugs');
-
 
 const productSchema = new mongoose.Schema({
     name : String,
@@ -12,7 +10,5 @@ const productSchema = new mongoose.Schema({
     imgsrc : String
 
 })
-
-productSchema.plugin(URLSlugs('name'));
 
 module.exports = mongoose.model('Product', productSchema);

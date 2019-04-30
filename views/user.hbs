@@ -3,26 +3,36 @@
   <div class="row">
     <div class="column">
       <div>{{User.title}}</div>
-      <form method="POST">
-          <div >Username: <input id="username"  type="text" value={{User.username}} readonly></div>
-          <div>Password: <input id="userpassword" type="password" value={{User.password}} readonly></div>
-          <div>Email: <input id="useremail" type="text" value={{User.email}} readonly></div>
+      <h1>CHANGE AT YOUR OWN RISK</h1>
+      <form method="POST" action="/edituser">
+          <div >Username: <input id="username"  name="username" type="text" value={{User.username}} readonly></div>
+          <div>Password: <input id="userpassword" type="password" name="password" value={{User.password}} readonly></div>
+          <div>Email: <input id="useremail" type="text" name="email" value={{User.email}} readonly></div>
+          <input type="hidden" name="userid" value={{User._id}}>
           {{#if validated}}
-            <button id="editbutton1" onclick="handleClick()" value="Edit"></button>
-            <input type="submit" onclick="" class="hidebutton" id="editbutton2" value="Save Edit">	
-            <button id="cancelbutton" onclick="handleClick()" class="hidebutton" value="Edit"></button>
+            <input type="submit" class="btn btn-primary hidebutton" id="editbutton2" value="Save Edit">	
+          {{/if}}
+
+      </form>
+          {{#if validated}}
+            <button class="btn btn-primary" id="editbutton">Edit</button>
           {{/if}}
           <script>
-            function handleClick(){
-              $('#editbutton2').toggleClass('hidebutton');
-              $('#editbutton1').toggleClass('hidebutton');
-              $('#cancelbutton').toggleClass('hidebutton');
-              $('#username').toggleAttribute("readonly");
-              $('#userpassword').toggleAttribute("readonly");
-              $('#usermail').toggleAttribute("readonly");
-            }
+              var button = document.getElementById("editbutton");
+              button.addEventListener("click",function(){
+              var elm = document.getElementById("username");
+              var elm2 = document.getElementById("userpassword");
+              var elm3 = document.getElementById("useremail");
+              elm.toggleAttribute("readonly");
+              elm2.toggleAttribute("readonly");
+              elm3.toggleAttribute("readonly");
+              button.innerText = button.innerText=="Edit"?"Cancel":"Edit";
+              var submitbutton = document.getElementById("editbutton2");
+              $("#editbutton2").toggleClass("hidebutton");
+            })
           </script>
-      </form>
+          
+      
     </div>
   </div>
   <div class="row">

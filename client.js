@@ -8,4 +8,3 @@ const Carousel = require('./public/components/Carousel');
 ReactDOM.render(<Navigationbar />, document.getElementById('Navbar'));
 ReactDOM.render(<Sidebar />, document.getElementById('Sidebar'));
 ReactDOM.render(<Productlist/>, document.getElementById('productlist'));
-ReactDOM.render(<Carousel/>, document.getElementById('Carousel'))

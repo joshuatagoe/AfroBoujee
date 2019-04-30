@@ -27,11 +27,6 @@ class Carousel extends React.Component{
         );
         
     }
-    handleClick(){
-        $('#mySidebar').toggleClass('active');
-        $('#main').toggleClass('active');
-
-    }
 }
 
 module.exports = Carousel;

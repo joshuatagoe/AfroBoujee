@@ -22,7 +22,7 @@ if(process.env.NODE_ENV === 'development') {
 }
 //https://alligator.io/nodejs/uploading-files-multer-express/
 const storage = multer.diskStorage({
-    destination: './public/img/products',
+    destination: 'public/img/products',
     filename: function (req, file, callback) {
         crypto.pseudoRandomBytes(16, function(err, raw) {
             if (err) return callback(err);
@@ -51,9 +51,9 @@ fs.readdirSync(models)
 const User = mongoose.model('User');
 const Product = mongoose.model('Product');
 const Store = mongoose.model('Store');
-const defaultusertest = "Musa Keita II"
-const defaultemailtest = "testdummy@email.com"
-const password = "Juchen2!"
+var defaultusertest = "Musa Keita II"
+var defaultemailtest = "testdummy@email.com"
+var password = "Juchen2!"
 /**const session = require('express-session');
 const sessionOptions = {
     secret: 'secret for singing session id',
@@ -64,7 +64,12 @@ const sessionOptions = {
 app.use(session(sessionOptions));**/
 
 app.get('/',function(req,res){
-    res.render('homepage');
+    Product.find(function(err, products, count){
+        res.render('homepage',{
+            products: encodeURIComponent(JSON.stringify(products))
+        });
+
+    })
 });
 
 app.get('/product/:store_id/:productname',function(req,res){
@@ -80,18 +85,30 @@ app.get('/product/:store_id/:productname',function(req,res){
 
 
 app.get('/market',function(req,res){
-    res.render('marketplace');
+    Product.find(function(err, products, count){
+        console.log(products);
+
+        res.render('marketplace',{
+            allproducts: encodeURIComponent(JSON.stringify(products))
+        });
+
+    })
 });
 
 app.get('/check',function(req,res){
     console.log("test");
-    res.render('checkout');
+    User.findOne({"username": defaultusertest}, function(err, User, count){
+        res.render('checkout',{
+            cart : User.cart
+        })
+    })
+    
 });
 
 
 app.post('/register', function(req,res){
     new User({
-        username: req.body.name, 
+        username: req.body.username, 
         password :req.body.password, 
         email : req.body.email
     }).save(function(err, user, count){
@@ -120,9 +137,11 @@ app.get('/mystores',function(req,res){
 app.get('/mystores/:slug/myproducts',function(req,res){
     if(req.params.slug){
         Store.findOne({ "slug" : req.params.slug}, function(err, currStore, count){
+            console.log(currStore);
             res.render('products', {
-                currStore : currStore
-            })
+                currStore1 : currStore,
+                currStore2 : encodeURIComponent(JSON.stringify(currStore))
+           })
         })
     }
     else{
@@ -131,6 +150,16 @@ app.get('/mystores/:slug/myproducts',function(req,res){
     
 
 })
+
+
+app.get('/products',function(req,res){
+    Product.find(function(err, products, count){
+            res.send(JSON.stringify(products));
+
+        })
+    
+})
+
 
 
 
@@ -161,9 +190,25 @@ app.post('/mystores/:slug/myproducts', upload.single('avatar'), function(req,res
     }
     else{
         console.log("filed received");
-        return res.send({
-            success: true
-        });
+        const host = req.host;
+        const filePath = req.file.path;
+        console.log(host);
+        console.log(filePath);
+        new Product({
+            name: req.body.name, 
+            price :req.body.price, 
+            pricecurrency: "$",
+            description: req.body.description,
+            imgsrc : filePath
+        }).save(function(err, product, count){
+            console.log(product)
+            console.log(err);
+            console.log(count);
+            console.log("test"+ req.body.storeid);
+            Store.findByIdAndUpdate(req.body.storeid, { $push: { items : product} }, function(err, storedproduct, count){
+                res.redirect('/mystores/'+req.params.slug+"/myproducts");
+        })
+    })
 
     }
 
@@ -189,8 +234,12 @@ app.get('/register', function(req,res){
 })
 
 app.get('/user/:username',function(req,res){
+    console.log(req.params.username);
     User.findOne({"username": req.params.username}, function(err, currUser, count){
+        console.log(currUser);
         let validated= false
+        console.log(password);
+        console.log(currUser.password);
         if(password===currUser.password){
             validated=true;
         }
@@ -203,6 +252,31 @@ app.get('/user/:username',function(req,res){
   });
 
 });
+
+app.post('/edituser', function(req,res){
+    User.findByIdAndUpdate(req.body.userid, { "username": req.body.username, "password" : req.body.password, "email" : req.body.email}, function(err, docs){
+        //just for production,prone to errors, variables will return to default when server restarts, can fix by dropping database then
+        //http://localhost:3000/register and adding
+        //new user with preset values (Musa Keita II, Juchen2!, testdummy@email.com)
+        //
+        defaultusertest = req.body.username;
+        defaultemailtest = req.body.email;
+        password = req.body.password;
+        res.redirect('/user/'+defaultusertest);
+    })
+
+})
+
+app.post('/addcart', function(req,res){
+    Product.findById(req.body.productid, function(err, product, count){
+
+        User.findOneAndUpdate({"username" : defaultusertest, "email" : defaultemailtest, "password" : password}, { $push: { cart : product } }, function(err, currstore, count){
+            res.redirect('back');
+    })
+    })
+
+
+})
 
 app.use(function(req, res, next){
     res.status(404).render('error');

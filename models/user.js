@@ -1,5 +1,4 @@
 const mongoose = require('mongoose') ;
-URLSlugs = require('mongoose-url-slugs');
 var Store = require('./store.js');
 var Product = require('./product.js');
 const userSchema = new mongoose.Schema({
@@ -13,7 +12,5 @@ const userSchema = new mongoose.Schema({
     cart: [Product.schema]
 
 })
-
-userSchema.plugin(URLSlugs("username"));
 
 module.exports = mongoose.model('User', userSchema);

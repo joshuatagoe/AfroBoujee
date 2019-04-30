@@ -21,16 +21,16 @@ class Navbar extends React.Component {
                         Countries
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Ghana</a>
-                        <a class="dropdown-item" href="#">Nigeria</a>
-                        <a class="dropdown-item" href="#">Kenya</a>
-                        <a class="dropdown-item" href="#">Morocco</a>
-                        <a class="dropdown-item" href="#">Egypt</a>
-                        <a class="dropdown-item" href="#">Mali</a>
-                        <a class="dropdown-item" href="#">Botswana</a>
-                        <a class="dropdown-item" href="#">South Africa</a>
-                        <a class="dropdown-item" href="#">Angola</a>
-                        <a class="dropdown-item" href="#">Rwanda</a>                        
+                        <a class="dropdown-item disabled" href="#">Ghana</a>
+                        <a class="dropdown-item disabled" href="#">Nigeria</a>
+                        <a class="dropdown-item disabled" href="#">Kenya</a>
+                        <a class="dropdown-item disabled" href="#">Morocco</a>
+                        <a class="dropdown-item disabled" href="#">Egypt</a>
+                        <a class="dropdown-item disabled" href="#">Mali</a>
+                        <a class="dropdown-item disabled" href="#">Botswana</a>
+                        <a class="dropdown-item disabled" href="#">South Africa</a>
+                        <a class="dropdown-item disabled" href="#">Angola</a>
+                        <a class="dropdown-item disabled" href="#">Rwanda</a>                        
 
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/market">Centralized Market Place</a>
@@ -39,7 +39,7 @@ class Navbar extends React.Component {
                     </ul>
                     </div>
                 <div>
-                <button class="openbtn nobg container" onClick={this.cart}><img class="cart" src="\img\cart.png"/><div>4</div> </button>
+                <button class="openbtn nobg" onClick={this.cart}><img class="cart" src="\img\cart.png"/></button>
                 </div>
   <button class="openbtn nobg" onClick={this.handleClick}><p>Musa Keita    </p><img class="user" src="\img\userdefault.jpg"/></button> 
 </nav>

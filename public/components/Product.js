@@ -5,8 +5,8 @@ class Product extends React.Component{
         return(
 
             <div className="container">
-            <img src={this.props.src} alt="Avatar" className="product"/>
-            <div className="overlay">This product is for sale</div>
+            <img src={this.props.product.imgsrc} alt="Avatar" className="product"/>
+            <div className="overlay">{this.props.product.name} : {this.props.product.price}</div>
             </div>
             
         );

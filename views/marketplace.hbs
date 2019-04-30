@@ -1,178 +1,48 @@
- <div id="mySidebar" class="sidebar">
-  <a href="#" class="closebtn" onClick="$('#mySidebar').toggleClass('active');
-  $('#main').toggleClass('active');">Musa Keita   <img class="user" src="\img\userdefault.jpg"></a>
-  <p>
-    <form method="POST" action="/register">
-      <div>Username:<input type="text" name="name" required></div>  
-      <div>Password: <input type="text" name="password" required></div>
-      <div>Email: <input type="text" name="email" required></div>
-      <input type="submit">
-    </form>
-  </p>
-    <ul class="list-unstyled components">
-        <li class="active">
-            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-            <ul class="collapse list-unstyled" id="homeSubmenu">
-                <li>
-                    <a href="#">Home 1</a>
-                </li>
-                <li>
-                    <a href="#">Home 2</a>
-                </li>
-                <li>
-                    <a href="#">Home 3</a>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">About</a>
-        </li>
-        <li>
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-            <ul class="collapse list-unstyled" id="pageSubmenu">
-                <li>
-                    <a href="#">Page 1</a>
-                </li>
-                <li>
-                    <a href="#">Page 2</a>
-                </li>
-                <li>
-                    <a href="#">Page 3</a>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">Portfolio</a>
-        </li>
-        <li>
-            <a href="#">Contact</a>
-        </li>
-    </ul>
-</div>
-
-<div class="container"> 
-
-  <div class="sidenav">
-  Categories
-  <ul>
-    <li>
-      <a href="#">Countries</a>
-      <ul>
-        <li> Ghana</li>
-        <li> Ghana</li>
-        <li> Ghana</li>
-        <li> Ghana</li>
-      </ul>
-    </li>
-
-  </ul>
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Clients</a>
-  <a href="#">Contact</a>
-</div>
-
-
-<div class="main">
-
-  <div class="container">
-  <div class="row">
-    <div class="col">
-      <img class="productsmall" src="\img\kora.jpg">
-    </div>
-    <div class="col">
-      <img  class="productsmall" src="\img\mbira.jpg">
-    </div>
-    <div class="col">
-      <img class="productsmall" src="\img\mankala.jpg">
-    </div>
-      <div class="col">
-      <img  class="productsmall" src="\img\mbira.jpg">
-    </div>
-    <div class="col">
-      <img class="productsmall" src="\img\kora.jpg">
-    </div>
-    <div class="col">
-    <div class="col">
-      <img class="productsmall" src="\img\mankala.jpg">
-    </div>
-  </div>
-</div>
-
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <img class="productsmall" src="\img\kora.jpg">
-    </div>
-    <div class="col">
-      <img  class="productsmall" src="\img\mbira.jpg">
-    </div>
-    <div class="col">
-      <img class="productsmall" src="\img\mankala.jpg">
-    </div>
-    <div class="col">
-      <img  class="productsmall" src="\img\mbira.jpg">
-    </div>
-    <div class="col">
-      <img class="productsmall" src="\img\kora.jpg">
-    </div>
-    <div class="col">
-    <div class="col">
-      <img class="productsmall" src="\img\mankala.jpg">
-    </div>
-  </div>
-</div>
-
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <img class="productsmall" src="\img\kora.jpg">
-    </div>
-    <div class="col">
-      <img  class="productsmall" src="\img\mbira.jpg">
-    </div>
-    <div class="col">
-      <img class="productsmall" src="\img\mankala.jpg">
-    </div>
-    <div class="col">
-      <img  class="productsmall" src="\img\mbira.jpg">
-    </div>
-    <div class="col">
-      <img class="productsmall" src="\img\kora.jpg">
-    </div>
-    <div class="col">
-    <div class="col">
-      <img class="productsmall" src="\img\mankala.jpg">
-    </div>
-  </div>
-</div>
-
-
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <img class="productsmall" src="\img\kora.jpg">
-    </div>
-    <div class="col">
-      <img  class="productsmall" src="\img\mbira.jpg">
-    </div>
-    <div class="col">
-      <img class="productsmall" src="\img\mankala.jpg">
-    </div>
-    <div class="col">
-      <img  class="productsmall" src="\img\mbira.jpg">
-    </div>
-    <div class="col">
-      <img class="productsmall" src="\img\kora.jpg">
-    </div>
-    <div class="col">
-    <div class="col">
-      <img class="productsmall" src="\img\mankala.jpg">
-    </div>
-  </div>
-</div>
+<div id="sidebar">
 
 </div>
 
+<div id="productlist">
 
 </div>
+
+<script type="text/jsx">
+    var ProductList = React.createClass({
+
+        render : function(){
+            console.log(this.props.products);
+            const multipleproducts = this.props.products; 
+            const elements = multipleproducts.map((num, i) => <div><Product product={num}/></div>
+            );
+            return ( <div>{elements}</div> );
+        }
+
+
+    })
+
+     var Product = React.createClass({
+        render : function(){
+
+            return(
+
+            <div className="container">
+            <img src={this.props.product.imgsrc} alt="Avatar" className="product"/>
+            <div className="overlay">
+            <div>Product: {this.props.product.name}</div>
+            <div>{this.props.product.pricecurrency}{this.props.product.price}</div>
+            <form method="POST" action="/addcart">
+              <input type="hidden" className="btn btn-primary" name="productid" value={this.props.product._id}/>
+              <input type="submit" value="buy"/>
+            </form>
+            </div>
+            </div>
+                
+            );
+            
+        }
+    })
+    var decodedJson = decodeURIComponent("{{{allproducts}}}");
+    var data = JSON.parse(decodedJson);
+    React.render(<ProductList products={data}/>, document.getElementById('productlist'));
+        
+</script>
