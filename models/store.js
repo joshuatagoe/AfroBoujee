@@ -1,14 +1,11 @@
 const mongoose = require('mongoose');
-var Product = require('./product.js');
-URLSlugs = require('mongoose-url-slugs');
+const Product = require('./product.js');
 
 const storeSchema = new mongoose.Schema({
-    storename: String,
-    items: [Product.schema],
-    location: String,
-    slug: String,
-    rating: Number //rating of the store and its products
-})
+  storename: String,
+  items: [Product.schema],
+  location: String,
+  rating: Number, // rating of the store and its products
+});
 
-
-module.exports = mongoose.model('Store',storeSchema);
+module.exports = mongoose.model('Store', storeSchema);

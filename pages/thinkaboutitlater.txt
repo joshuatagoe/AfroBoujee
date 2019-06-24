@@ -1,0 +1,20 @@
+                <style jsx>{`
+                    .logo{
+                        font-size
+                    }
+                    nav{
+                        display: flex,
+                        justify-content: center,
+
+                    }
+
+                    nav.ul{
+
+                    }
+        
+    
+    
+    
+    
+                `}
+                </style>    

@@ -1,2 +1,4 @@
 node_modules
-config.json
+_logs
+.next
+_cacache

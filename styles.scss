@@ -1,0 +1,65 @@
+$themecolor1: goldenrod;
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 10px;
+    color: #333;
+}
+
+.logo{
+    position: relative;
+    top: 3vh;
+    display: inline-block;
+    font-size: 3vh;
+    font-weight: bolder;
+    box-sizing: content-box;  
+    padding-left: 6vw;
+    color: $themecolor1;
+    cursor: pointer;
+}
+
+nav{
+    padding-left: 5vw;
+    position: relative;
+    z-index: 1000;
+    display: flex;
+    padding-top: 5vh;
+    align-items: left;
+  
+}
+
+nav ul{
+    list-style: none;
+    display: flex;
+    font-size: 1.4rem;
+}
+
+nav ul li{
+    padding-right: 5vw;
+    padding-left: 2vw;
+    transition: color 1s;
+    line-height: 5vh;
+    text-align: left;
+    cursor: pointer;
+    
+}
+
+nav ul li:hover{
+    color: $themecolor1;
+    font-weight: bolder;
+}
+
+.dot {
+    height: 15px;
+    width: 15px;
+    background-color:#bbb;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    }

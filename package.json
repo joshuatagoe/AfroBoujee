@@ -1,43 +1,31 @@
 {
-  "name": "juchy-final-project",
+  "name": "NextExpress",
   "version": "1.0.0",
-  "description": "The content below is an example project proposal / requirements document. Replace the text below the lines marked \"__TODO__\" with details specific to your project. Remove the \"TODO\" lines.",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "set NODE_ENV=production&node server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nyu-csci-ua-0480-008-spring-2019/JUCHY-final-project.git"
-  },
+  "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/nyu-csci-ua-0480-008-spring-2019/JUCHY-final-project/issues"
-  },
-  "homepage": "https://github.com/nyu-csci-ua-0480-008-spring-2019/JUCHY-final-project#readme",
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "crypto": "^1.0.1",
-    "express": "^4.16.4",
-    "express-session": "^1.16.1",
+    "@material-ui/core": "^4.1.2",
+    "@material-ui/icons": "^4.2.1",
+    "@zeit/next-sass": "^1.0.1",
+    "axios": "^0.19.0",
+    "express": "^4.17.1",
     "fs": "0.0.1-security",
-    "handlebars-react": "0.0.16",
-    "hbs": "^4.0.4",
-    "mongoose": "^5.4.22",
-    "mongoose-url-slugs": "^1.0.2",
-    "morgan": "^1.9.1",
-    "multer": "^1.4.1",
+    "isomorphic-unfetch": "^3.0.0",
+    "mongoose": "^5.6.0",
+    "next": "^8.1.0",
+    "node-sass": "^4.12.0",
+    "path": "^0.12.7",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
-  },
-  "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
-    "webpack": "^4.30.0",
-    "webpack-cli": "^3.3.0",
-    "webpack-dev-middleware": "^3.6.2"
+    "react-dom": "^16.8.6",
+    "react-markdown": "^4.0.8"
   }
 }
