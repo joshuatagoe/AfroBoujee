@@ -10,7 +10,7 @@ renderProdBox(item){
 
 renderBlogBox(item){
     console.log(item);
-    return <Box blog={true}  src={item.src}/>
+    return <Box blog={true}  title={item.title} description={item.description} category={item.category} src={item.src}/>
 }
 
 render(){

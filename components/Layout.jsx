@@ -4,6 +4,7 @@ import Searchbar from './Searchbar'
 import Menu from './Menu'
 import BaseHead from './BaseHead'
 import Logo from './Logo'
+import Footer from './Footer'
 import "../styles.scss"
 
 
@@ -21,6 +22,8 @@ export default class Layout extends React.Component{
                 <Menu/>
                 <Navbar/>
                 {this.props.children}
+
+                <Footer/>
             </div>
         )
     }

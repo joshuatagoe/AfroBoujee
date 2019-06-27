@@ -26,12 +26,33 @@ export default class Box extends React.Component{
                     `}</style>
         </div>)
 
-        const Blog = ( <div>
+        const Blog = ( <div className="blogbox">
             <img className='blogimage' src={this.props.src}>
             </img>
-            <div className='category'>Blog Category</div>
-            <div className='title'>Blog Title</div>
-            <div className='description'>BLOG DESCRIPTION BLOG DESCRIPTION BLOG DECRIPTION BLOG DESCRIPTION BLOG DESCRIPTION BLOG DESCRIP......</div>
+            <div className='category'>{this.props.category}</div>
+            <div className='title'>{this.props.title}</div>
+            <div className='description'>{this.props.description}</div>
+            <style jsx>{`
+                    .title{
+                        font-weight: bolder;
+                        font-size: 2rem;
+                    }
+                    .description{
+                        font-size: 1rem;
+                    }
+                    .category{
+                        font-size: .5rem;
+                        font-weight: lighter;
+                    }
+                    .blogimage{
+                        max-height: 50vh;
+                        max-width: 30vw;
+                    }
+                    .blogbox{
+                        padding: 5vw;
+                    }
+                    
+                    `}</style>
         </div>)
 
         return <div>
