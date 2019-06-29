@@ -11,9 +11,6 @@ export default class MenuIcon extends React.Component{
             </div>
             {this.props.menutext=="PROFILE" && <div className="menu-dropdown">
                 <LoginForm/>
-                <a href="#">Link 1</a>
-                <a href="#">Link 1</a>
-                <a href="#">Link 1</a>
             </div>}
             <style jsx>{`
 
@@ -45,8 +42,7 @@ export default class MenuIcon extends React.Component{
             .menu-dropdown{
                 display: none;
                 position: absolute;
-                background-color: lightgray;
-                min-width: 160px;
+                background-color: white;
                 box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 
             }
