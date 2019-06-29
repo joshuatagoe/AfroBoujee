@@ -5,22 +5,22 @@ export default class BenefitsMini extends React.Component{
 
         return(
                 <div className='benefits'>
-                    <div class="benefit">
+                    <div className="benefit border">
 
                     </div>
-                    <div class="benefit">
+                    <div className="benefit border">
                         
                     </div>
-                    <div class="benefit">
+                    <div className="benefit border">
                         
                     </div>
-                    <div class="benefit">
+                    <div className="benefit border">
                         
                     </div>
-                    <div class="benefit">
+                    <div className="benefit border">
                         
                     </div>
-                    <div class="benefit">
+                    <div className="benefit">
                         
                     </div>
                     <style jsx>{`
@@ -33,10 +33,14 @@ export default class BenefitsMini extends React.Component{
                         }
 
                         .benefit{
-                            border-right: 1px solid black;
+                            position: relative;
+                            top: 5vh; 
                             height: 30vh;
-
+                            width: 20vw;
                         }
+                        .border{
+                            border-right: 1px solid rgba(0, 0, 0, 0.5);
+                        }   
                         
                         `}</style>
                 </div>

@@ -1,5 +1,6 @@
 import MenuIcon from './Menu-icon'
-import { Person, Store as Manager, Notifications} from '@material-ui/icons';
+import ReactSVG from 'react-svg'
+
 
 export default class MenuProfilebuttons extends React.Component{
     constructor(props){
@@ -12,13 +13,17 @@ export default class MenuProfilebuttons extends React.Component{
     render(){
         const LoggedInMenu = (
             <div>
-                    <MenuIcon menutext="PROFILE"><Person/></MenuIcon>
-                    <MenuIcon menutext="DASHBOARD"><Manager/></MenuIcon>
-                    <MenuIcon menutext="NOTIFICATIONS"><Notifications/></MenuIcon>
+                    <MenuIcon menutext="PROFILE"><ReactSVG src="/static/imgs/profile.svg"/></MenuIcon>
+                    <MenuIcon menutext="DASHBOARD"><ReactSVG src="/static/imgs/manager.svg"/></MenuIcon>
+                    <MenuIcon menutext="NOTIFICATIONS"><ReactSVG src="/static/imgs/notifications.svg"/></MenuIcon>
             </div>
         )
         const LoggedOutMenu = (
-            <MenuIcon menutext="PROFILE"><Person/></MenuIcon>
+            <>
+            <MenuIcon menutext="PROFILE"><ReactSVG src="/static/imgs/profile.svg"/></MenuIcon>
+            </>
+
+            
         )
         let renderthis=null;
         if (typeof window !== 'undefined') {

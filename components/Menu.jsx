@@ -1,5 +1,5 @@
 import MenuProfilebuttons from './Menu-Profilebuttons';
-import { Apps, ShoppingCart } from '@material-ui/icons';
+import ReactSVG from 'react-svg'
 import MenuIcon from './Menu-icon'
 
 export default class Menu extends React.Component{
@@ -11,17 +11,18 @@ export default class Menu extends React.Component{
 
         return(
             <div className="menu">
-                <MenuIcon menutext="DISCOVER"><Apps/></MenuIcon>
+                <MenuIcon menutext="DISCOVER"><ReactSVG src="/static/imgs/discover.svg"/></MenuIcon>
                 <MenuProfilebuttons></MenuProfilebuttons>
-                <MenuIcon menutext="CART"><ShoppingCart/></MenuIcon>
+                <MenuIcon menutext="CART"><ReactSVG src="/static/imgs/cart.svg"/></MenuIcon>
             <style jsx>{`
                     .menu{
-                        opacity: 0.5;
                         display: inline-flex;
                         justify-content: flex-end;
                         position: relative;
                         top: 1.5vh;
-                        padding-left: 10vw;
+                        z-index: 1000;
+                        right: 10vw;
+                        float: right;
                     }
                 
                 `}</style>

@@ -4,13 +4,13 @@ export default class List extends React.Component{
 
 
 renderProdBox(item){
-    console.log(item);
+   // console.log(item);
     return <Box prod={true} detailed={item.detailed} price={item.price} src={item.src}/>
 }
 
 renderBlogBox(item){
-    console.log(item);
-    return <Box blog={true}  title={item.title} description={item.description} category={item.category} src={item.src}/>
+   // console.log(item);
+    return <Box blog={true} key={item.title} title={item.title} description={item.description} category={item.category} src={item.src}/>
 }
 
 render(){

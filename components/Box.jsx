@@ -13,6 +13,7 @@ export default class Box extends React.Component{
                     .price{
                         font-weight: bolder;
                         font-size: 2rem;
+                        text-align: right;
                     }
 
                     .imgbox{
