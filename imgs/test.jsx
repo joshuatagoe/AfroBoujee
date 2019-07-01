@@ -1,0 +1,5 @@
+{
+/*
+  Checking for posting permissions
+*/
+}
