@@ -1,9 +1,9 @@
-import {Register} from '../js/UserFunctions'
+import {Register, showRegister_Modal as toggle} from '../js/UserFunctions'
 import Router from 'next/router'
-import Layout from '../components/Layout';
+var $ = require('jquery');
 
 
-export default class RegisterPage extends React.Component{
+export default class Register_Modal extends React.Component{
     constructor(props){
         super(props)
         this.state = {
@@ -15,6 +15,18 @@ export default class RegisterPage extends React.Component{
         }
         this.onChange = this.onChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
+    }
+
+    componentDidMount(){
+        var modal = document.getElementById('modal');
+        var hide_modal = function(event) {
+            console.log(event.target);
+            if (event.target == modal) {
+                $('.modal').toggleClass('view');
+            }
+        }
+        console.log(modal);
+        modal.addEventListener("click", hide_modal);
     }
 
     onChange(evt){
@@ -37,7 +49,7 @@ export default class RegisterPage extends React.Component{
                 if(res.error){
                     alert(res.error)
                 }
-                Router.push('/')
+                Router.push('/login')
             }
         )
 
@@ -46,12 +58,18 @@ export default class RegisterPage extends React.Component{
     render(){
 
         return(
-                <form className={this.props.class} onSubmit={this.onSubmit}>
-                    <input type="email" placeholder="Email" name="email" value={this.state.email} onChange={this.onChange}></input>
-                    <input type="text" placeholder="Username" name="username" value={this.state.username} onChange={this.onChange}></input>
-                    <input type="password" placeholder="Password" name="password" value={this.state.password} onChange={this.onChange}></input>
-                    <input type="number" placeholder="Age" name="age" value={this.state.age} onChange={this.onChange}></input>
-                    <select name="country" onChange={this.onChange} >
+            <div id="modal"className="modal">
+
+                  <form id="register-modal" className="animate" onSubmit={this.onSubmit}>
+                    <div className="imgcontainer">
+                    <span onClick={toggle} className="close" title="Close Modal">&times;</span>
+                    <img src={require('../static/imgs/profile.svg')} alt="Avatar" className="avatar"/>
+                    </div>
+                    <input type="email" placeholder="Email" name="email" value={this.state.email} onChange={this.onChange} required></input>
+                    <input type="text" placeholder="Username" name="username" value={this.state.username} onChange={this.onChange} required></input>
+                    <input type="password" placeholder="Password" name="password" value={this.state.password} onChange={this.onChange} required></input>
+                    <input type="number" placeholder="Age" name="age" value={this.state.age} onChange={this.onChange} required></input>
+                    <select name="country" onChange={this.onChange}  required>
                         <option value="AF">Afghanistan</option>
                         <option value="AX">Åland Islands</option>
                         <option value="AL">Albania</option>
@@ -293,7 +311,7 @@ export default class RegisterPage extends React.Component{
                         <option value="UZ">Uzbekistan</option>
                         <option value="VU">Vanuatu</option>
                         <option value="VE">Venezuela, Bolivarian Republic of</option>
-                        <option value="VN">Viet Nam</option>
+                        <option value="VN">Vietnam</option>
                         <option value="VG">Virgin Islands, British</option>
                         <option value="VI">Virgin Islands, U.S.</option>
                         <option value="WF">Wallis and Futuna</option>
@@ -302,53 +320,140 @@ export default class RegisterPage extends React.Component{
                         <option value="ZM">Zambia</option>
                         <option value="ZW">Zimbabwe</option>
                     </select>
-                    <button type="submit">Register</button>
+                    <div className="buttons">
+                    <button className="button" type="submit">Register</button><button className="cancel button" onClick={toggle}>Cancel</button>
+                    </div>
+
+            </form>
+              
                     <style jsx>{`
-                            .form {
-                            background-color: #fefefe;
+                        input[type=text], input[type=password], input[type=email], input[type=number], select {
+                        width: 60%;
+                        padding: 12px 20px;
+                        margin: 8px 0;
+                        display: inline-block;
+                        border: 1px solid #ccc;
+                        box-sizing: border-box;
+                        }
+
+                        .modal {
+                        display: none; /* Hidden by default */
+                        position: fixed; /* Stay in place */
+                        z-index: 9000; /* Sit on top */
+                        left: 0;
+                        top: 0;
+                        width: 100%; /* Full width */
+                        height: 100%; /* Full height */
+                        overflow: auto; /* Enable scroll if needed */
+                        background-color: rgb(0,0,0); /* Fallback color */
+                        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                        }   
+                        .cancelbtn {
+                        width: auto;
+                        padding: 10px 18px;
+                        background-color: #f44336;
+                        }
+
+                        /* Center the image and position the close button */
+                        .imgcontainer {
+                        text-align: center;
+                        margin: 16px 0 8px 0;
+                        position: relative;
+                        }
+
+                        img.avatar {
+                        width: 20%;
+                        border-radius: 50%;
+                        }
+
+                        .view{
+                            display: block;
+                            width: 100%;
+                        }
+
+                        .container {
+                        padding: 16px;
+                        }
+
+                        span.psw {
+                        float: right;
+                        padding-top: 16px;
+                        }                 
+                        form {
+                            background-color: white;
                             margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
                             border: 1px solid #888;
-                            width: 80%; /* Could be more or less, depending on screen size */
-                            }
+                            width: 80%;
+                            text-align: center; /* Could be more or less, depending on screen size */
+                        }
 
-                            /* The Close Button (x) */
-                            .close {
+                        /* The Close Button (x) */
+                        .close {
                             position: absolute;
                             right: 25px;
                             top: 0;
                             color: #000;
                             font-size: 35px;
                             font-weight: bold;
-                            }
+                        }
 
-                            .close:hover,
-                            .close:focus {
+                        .close:hover,
+                        .close:focus {
                             color: red;
                             cursor: pointer;
-                            }
-                            display{
-                                display: block;
-                            }
+                        }
+                        display{
+                            display: block;
+                        }
 
-                            .animate {
+                        .animate {
                             -webkit-animation: animatezoom 0.6s;
                             animation: animatezoom 0.6s
-                            }
+                        }
 
-                            @-webkit-keyframes animatezoom {
-                            from {-webkit-transform: scale(0)} 
-                            to {-webkit-transform: scale(1)}
-                            }
+                        @-webkit-keyframes animatezoom {
+                        from {-webkit-transform: scale(0)} 
+                        to {-webkit-transform: scale(1)}
+                        }
 
-                            @keyframes animatezoom {
-                            from {transform: scale(0)} 
-                            to {transform: scale(1)}
-                            }
-                        
-                        
+                        @keyframes animatezoom {
+                        from {transform: scale(0)} 
+                        to {transform: scale(1)}
+                        }
+                        .buttons{
+                        display: flex;
+                        justify-content: space-evenly;
+                        flex-direction: column;
+                        }
+
+                        .button{
+                        position: relative;
+                        background-color: black;
+                        color: goldenrod;
+                        padding: 16px;
+                        font-size: 1.5rem;
+                        border: none;
+                        opacity: .5;
+                        margin: 8px 0;
+                        width: 100%;
+                        transition: bottom 1s, opacity 1s;
+
+                        } 
+
+                        .cancel{
+                            background-color: red;
+                        }
+
+                        .button:hover{
+                        bottom: .5vh;
+                        opacity: 1;
+                        box-shadow: 0px .5vh #888888;
+
+                        }
+                    
                         `}</style>
                     
-                </form>
+                </div>
  
         )
     }

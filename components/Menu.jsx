@@ -12,7 +12,7 @@ export default class Menu extends React.Component{
         return(
             <div className="menu">
                 <MenuIcon menutext="DISCOVER"><ReactSVG src="/static/imgs/discover.svg"/></MenuIcon>
-                <MenuProfilebuttons></MenuProfilebuttons>
+                <MenuProfilebuttons user={this.props.user}></MenuProfilebuttons>
                 <MenuIcon menutext="CART"><ReactSVG src="/static/imgs/cart.svg"/></MenuIcon>
             <style jsx>{`
                     .menu{

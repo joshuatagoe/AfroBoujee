@@ -1,12 +1,18 @@
 const express = require('express');
+const session = require("express-session");
+const uid = require('uid-safe');
 const next = require('next');
+const passport = require('passport');
+
+require('./passport')(passport)
+
 const fs = require('fs');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path');
 const { join } = require('path');
 const db = require('./db');
-
+const UserAuth = require('./routes/UserAuth')(passport);
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
@@ -26,53 +32,25 @@ app
     server.use(express.urlencoded({ extended: true }));
     server.use(bodyParser.json());
     server.use(bodyParser.urlencoded({ extended: true }));
+    //session management
+    const sessionConfig = {
+      secret: uid.sync(18),
+      cookie: {
+        maxAge: 86400 * 1000 // 24 hours in milliseconds
+      },
+      resave: false,
+      saveUninitialized: true
+    };
+    server.use(session(sessionConfig))
+    
 
-    server.post('/register', (req, res) => {
-      console.log(req.body);
-      if (!req.body.username | !req.body.password | !req.body.email) {
-        res.status(400).send('Invalid username, email, or password');
-      }
-      User.find(
-        { $or: [{ username: req.body.username }, { email: req.body.email }] },
-        function(err, currUser, count) {
-          console.log(currUser);
-          if (currUser.length != 0) {
-            console.log('user exists');
-            res.send({ error: 'User Currently Exists' });
-          } else {
-            console.log('Checking if reached');
-            new User({
-              username: req.body.username,
-              password: req.body.password,
-              email: req.body.email,
-              country: req.body.country,
-              age: req.body.age,
-            }).save(function(err, user, count) {
-              res.json({
-                username: user.username,
-              });
-            });
-          }
-        }
-      );
-    });
+  //configure passsport
+    server.use(passport.initialize());
+    server.use(passport.session());
 
-    server.post('/login', (req, res) => {
-      User.findOne(
-        { email: req.body.email, password: req.body.password },
-        function(err, currUser, count) {
-          if (err) {
-            res.json({ error: 'error occured boi' });
-          }
-          if (!currUser) {
-            res.json({ error: "user don't exist boi" });
-          }
-          return res.json({
-            username: currUser.username,
-          });
-        }
-      );
-    });
+
+  //routes
+    server.use('/auth', UserAuth);
 
     server.get('/p/:id', (req, res) => {
       const actualPage = '/post';

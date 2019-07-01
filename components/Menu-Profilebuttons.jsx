@@ -5,18 +5,15 @@ import ReactSVG from 'react-svg'
 export default class MenuProfilebuttons extends React.Component{
     constructor(props){
         super(props)
-        this.state= {
-            username : ""
-        }
     }
 
     render(){
         const LoggedInMenu = (
-            <div>
+            <>
                     <MenuIcon menutext="PROFILE"><ReactSVG src="/static/imgs/profile.svg"/></MenuIcon>
                     <MenuIcon menutext="DASHBOARD"><ReactSVG src="/static/imgs/manager.svg"/></MenuIcon>
                     <MenuIcon menutext="NOTIFICATIONS"><ReactSVG src="/static/imgs/notifications.svg"/></MenuIcon>
-            </div>
+            </>
         )
         const LoggedOutMenu = (
             <>
@@ -27,9 +24,11 @@ export default class MenuProfilebuttons extends React.Component{
         )
         let renderthis=null;
         if (typeof window !== 'undefined') {
-            renderthis = localStorage.userToken ? LoggedInMenu : LoggedOutMenu
+            console.log(this.props.user);
+            renderthis = this.props.user ? LoggedInMenu : LoggedOutMenu
 
         }
+        console.log(this.props.user);
         return(
             renderthis
         )

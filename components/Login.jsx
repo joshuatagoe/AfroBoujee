@@ -1,13 +1,12 @@
-import {Login} from '../js/UserFunctions'
+import {Login , showRegister_Modal as toggle} from '../js/UserFunctions'
 import Router from 'next/router' 
-import RegisterForm from './Register.jsx'
 export default class LoginForm extends React.Component{
     constructor(props){
         super(props)
         this.state = {
             email: "",
-            password: ""
-            modal: ""
+            password: "",
+            modal: false
         }
         this.onChange = this.onChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
@@ -19,28 +18,33 @@ export default class LoginForm extends React.Component{
 
     onSubmit(evt){
         evt.preventDefault();
+        console.log("test");
         const user = {
             email: this.state.email,
             password: this.state.password
         }
+        Login(user).then(
+            res=>{
+                if(res.error){
+                    alert(res.error)
+                }
+               //Router.push('/register')
+            }
+        )
+    }
 
     openRegister(evt){
         evt.preventDefault();
-        const user = {
-            email: this.state.email,
-            password: this.state.password
-        }
+        this.setState({
+           modal : true
+        })
     }
 
-    Login(user).then(
-        res=>{
-            if(res.error){
-                alert(res.error)
-            }
-            Router.push('/')
-        }
-    )
-
+    closeRegister(evt){
+        evt.preventDefault();
+        this.setState({
+            modal: false
+        })
     }
 
     render(){
@@ -52,7 +56,7 @@ export default class LoginForm extends React.Component{
                     <input type="email" placeholder="Email" name="email" value={this.state.email} onChange={this.onChange}></input>
                     <span>Password</span>
                     <input type="password" placeholder="Password" name="password" value={this.state.password} onChange={this.onChange}></input>
-                    <div className="buttons"><button className="login" type="submit">Login</button><button onSubmit={this.openRegister} className="register">Register</button></div>
+                    <div className="buttons"><button className="login" type="submit">Login</button><button type="button" onClick={toggle} className="register">Register</button></div>
                 </form>
 
                 <style jsx>{`
@@ -68,6 +72,24 @@ export default class LoginForm extends React.Component{
                         border: 1px solid #ccc;
                         box-sizing: border-box;
                         }
+                    .login:hover{
+                        bottom: .5vh;
+                        opacity: 1;
+                        box-shadow: 0px .5vh #888888;
+
+                    }
+                    .register:hover{
+                        
+                        bottom:.5vh;
+                        opacity: 1;
+                        box-shadow: 0px .5vh #888888;
+                    
+                    }
+                    .buttons{
+                        display: flex;
+                        justify-content: space-evenly;
+                    }
+                    
                     .login {
                         position: relative;
                         background-color:black;
@@ -91,23 +113,6 @@ export default class LoginForm extends React.Component{
 
                     } 
 
-                    .login:hover{
-                        bottom: .5vh;
-                        opacity: 1;
-                        box-shadow: 0px .5vh #888888;
-
-                    }
-                    .register:hover{
-                        
-                        bottom:.5vh;
-                        opacity: 1;
-                        box-shadow: 0px .5vh #888888;
-                    
-                    }
-                    .buttons{
-                        display: flex;
-                        justify-content: space-evenly;
-                    }
                     
                     `}</style>
             </div>
