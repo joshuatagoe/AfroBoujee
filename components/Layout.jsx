@@ -11,13 +11,6 @@ import "../styles.scss"
 
 
 export default class Layout extends React.Component{
-      constructor(props) {
-        super(props);
-        this.state = {
-          user: props.pageProps
-        };
-      }
-    
 
     render(){
         return(
@@ -25,7 +18,7 @@ export default class Layout extends React.Component{
                 <BaseHead/>
                 <Logo/>
                 <Searchbar/>
-                <Menu user={this.state.user}/>
+                <Menu user={this.props.user}/>
                 <Navbar/>
                 <Register_Modal />
                 {this.props.children}
@@ -35,15 +28,4 @@ export default class Layout extends React.Component{
         )
     }
 
-}
-
-Layout.getInitialProps = async function(ctx) {
-  let pageProps = {};
-  pageProps = await Component.getInitialProps(ctx);
-  if (ctx.req && ctx.req.session.passport) {
-    //console.log(ctx.req.session);
-    pageProps.user = ctx.req.session.passport.user;
-  }
-  console.log(pageProps);
-  return { pageProps };
 }

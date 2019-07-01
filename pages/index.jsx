@@ -57,8 +57,10 @@ export default class Index extends React.Component{
             }
             
         ]
+        console.log("test");
+        console.log(this.props.user);
         return (
-            <Layout>
+            <Layout user={this.props.user}>
             <Slider/>
             <List prods={true} items={items}/>
             <List prods={true} items={items}/>
