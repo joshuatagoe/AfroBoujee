@@ -7,7 +7,7 @@ Revamp of  [AIT Final_Proj](https://github.com/JUCHY/AIT_Final_Proj.git)
 
 Design Concept:
 
-![HomePage](https://imgur.com/a/pbHxHDW.png)
+![HomePage](https://i.imgur.com/mfjHAVm.png)
 
 **Current Progress**
 
