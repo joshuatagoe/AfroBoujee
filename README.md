@@ -5,6 +5,8 @@ eCommerce Website that allows users to create their own stores and add their own
 Users are also able to search centralized market for specific products they're looking for.
 Revamp of  [AIT Final_Proj](https://github.com/JUCHY/AIT_Final_Proj.git)
 
+Trying to make as fast as possible. Currently using Next JS for Server Side Rendering to allow for SEO. And looking into using Redis in the future to speed up database calls.
+
 Design Concept:
 
 ![HomePage](https://i.imgur.com/mfjHAVm.png)
